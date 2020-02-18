@@ -27,7 +27,8 @@ public class MyQueue<T> implements QueueInterface<T> {
 
 	@Override
 	public T dequeue() {
-		// TODO Auto-generated method stub
+		if (!isEmpty())
+			firstNode = firstNode.next();
 		return null;
 	}
 
@@ -48,6 +49,14 @@ public class MyQueue<T> implements QueueInterface<T> {
 		return null;
 	}
 
+	
+	private T getFront() {
+		if (isEmpty())
+			return null;
+		else
+			return firstNode.getData();
+	}
+	
 	private class Node {
 		T data;
 		Node next;
@@ -66,6 +75,10 @@ public class MyQueue<T> implements QueueInterface<T> {
 		
 		public boolean hasNext() {
 			return next == null ? false : true;
+		}
+		
+		public T getData() {
+			return data;
 		}
 	}
 }
