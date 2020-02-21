@@ -8,7 +8,7 @@ public class Container implements ContainerInterface {
 	}
 	
 	public Container(int size) {
-		packageStack = new MyStack<DonationPackage>();
+		packageStack = new MyStack<DonationPackage>(size);
 	}
 	
 	
