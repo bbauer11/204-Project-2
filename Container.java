@@ -30,4 +30,8 @@ public class Container implements ContainerInterface {
 	public DonationPackage[] toArrayPackage() {
 		return packageStack.toArray();
 	}
+	
+	public boolean isEmpty() {
+		return packageStack.isEmpty();
+	}
 }
