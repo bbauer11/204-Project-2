@@ -27,9 +27,15 @@ public class MyQueue<T> implements QueueInterface<T> {
 
 	@Override
 	public T dequeue() {
-		if (!isEmpty())
-			firstNode = firstNode.next();
-		return null;
+		if (!isEmpty()) {
+			actualSize--;
+			T toReturn = firstNode.getData();
+			firstNode = firstNode.next;
+			if (actualSize == 0)
+				lastNode = null;
+			return toReturn;
+		} else
+			return null;
 	}
 
 	@Override
@@ -38,24 +44,43 @@ public class MyQueue<T> implements QueueInterface<T> {
 	}
 
 	@Override
-	public boolean enqueue(Object e) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean enqueue(T newEntry) {
+		Node newNode = new Node(newEntry);
+		
+		if (!isFull()) {
+			if (isEmpty())
+				firstNode = newNode;
+			else 
+				lastNode.setNext(newNode);
+			
+			lastNode = newNode;
+			actualSize++;
+			return true;
+		} else 
+			return false;
 	}
 
+	@SuppressWarnings("unchecked")   // for generic array creation
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		T[] toReturn = (T[]) new Object[actualSize];
+		Node curr = firstNode; 	
+		
+		for (int i = 0; i < actualSize; i++) {
+			toReturn[i] = curr.getData();
+			if (curr.hasNext())
+				curr = curr.next;
+		}
+		
+		return toReturn;
+	}
+	
+	public T getFront() {
+		return firstNode.getData();
 	}
 
 	
-	private T getFront() {
-		if (isEmpty())
-			return null;
-		else
-			return firstNode.getData();
-	}
+	
 	
 	private class Node {
 		T data;
@@ -65,9 +90,6 @@ public class MyQueue<T> implements QueueInterface<T> {
 			this.data = data;
 		}
 		
-		public Node next() {
-			return this.next;
-		}
 		
 		public void setNext(Node n) {
 			this.next = n;

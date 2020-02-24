@@ -54,11 +54,18 @@ public class MyStack<T> implements StackInterface<T> {
 		}
 	}
 
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public T[] toArray() {
 		return (T[]) vector.toArray();
 	}
 
+	public T peek() {
+		if (vector.size() > 0)
+			return vector.get(vector.size() - 1);
+		else return null;
+	}
 	
 }

@@ -28,10 +28,23 @@ public class Container implements ContainerInterface {
 	}
 	
 	public DonationPackage[] toArrayPackage() {
-		return packageStack.toArray();
+		
+		Object[] temp = packageStack.toArray(); 
+		DonationPackage[] toReturn = new DonationPackage[packageStack.size()];
+		for (int i = 0; i <	packageStack.size(); i++) {
+			toReturn[i] = (DonationPackage) temp[i]; 
+		}
+		return toReturn;
 	}
 	
 	public boolean isEmpty() {
 		return packageStack.isEmpty();
+	}
+	
+	public DonationPackage getTop() {
+		if (packageStack.isEmpty())
+			return (DonationPackage) packageStack.peek();
+		else
+			return null;
 	}
 }

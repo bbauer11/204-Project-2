@@ -41,13 +41,13 @@ public interface DonationManageInterface {
 	 * @throws RecipientException("Recipient Queue is empty") if there are no recipients
 	 * 
 	 */
-	public  int donatePackage() throws VolunteerException, ContainerException, RecipientException;
+	public int donatePackage() throws VolunteerException, ContainerException, RecipientException;
 	
 	/**
 	 * Returns an array of DonationPackages
 	 * @return an array of Donation Packages
 	 */
-	public DonationPackage[] managerArrayPackage();
+	public Object[] managerArrayPackage();
 	
 	/**
 	 * Returns an array of Volunteers
